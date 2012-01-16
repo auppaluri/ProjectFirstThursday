@@ -1,18 +1,28 @@
 require 'date'
 
-# Declare/Assign Vars
-now = DateTime.now
-date = Date.new(now.year, now.month,now.day)+1
 
-# Fetch next months 1st day
+# Declare/Assign Variables
+now = DateTime.now
+
+# Fetch next months first date
+date = Date.new(now.year, now.month,now.day)+1
 while date.day!=1
-date = date+1
+   date = date+1
 end
 
-#Fetch first Thursday of the next month
+#Fetch Next Thursday of the month
 while date.wday != 4 
    date = date + 1
 end
 
-#format the output
-puts date.strftime('%A, %b %d, %Y')
+if date.day == 1
+ dateSuffix = "st"
+elsif date.day == 2
+ dateSuffix = "nd"
+elsif date.day == 3
+ dateSuffix = "rd"
+else
+ dateSuffix = "th"
+end
+
+puts date.strftime('%A, %B %e' + dateSuffix + ', %Y')
